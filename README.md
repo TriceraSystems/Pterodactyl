@@ -6,3 +6,10 @@ A lightweight, scalable API framework designed for speed and agility. It feature
 ![GitHub Issues or Pull Requests](https://img.shields.io/github/issues/TriceraSystems/Pterodactyl?style=flat-square)
 ![GitHub repo size](https://img.shields.io/github/repo-size/TriceraSystems/Pterodactyl?style=flat-square)
 
+
+## Table of Contents
+
+- [Installation](#installation)
+
+
+## Installation
