@@ -8,6 +8,7 @@ homepage = "https://github.com/TriceraSystems/Pterodactyl"
 repository = "https://github.com/TriceraSystems/Pterodactyl"
 readme = "README.md"
 edition = "2021"
+exclude = ["/locust"]
 
 [dependencies]
 hyper = { version = "1", features = ["full"] }

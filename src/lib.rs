@@ -78,6 +78,8 @@ async fn index(_: Request<hyper::body::Incoming>) -> Result<Response<Full<Bytes>
         .body(Full::new(Bytes::from(json_response)))
         .unwrap();
 
+    // println!("Request received");
+
     Ok(response)
 }
 
