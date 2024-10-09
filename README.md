@@ -1,2 +1,2 @@
-# Pterodactyl
-A lightweight, scalable API framework that takes your applications to new heights with speed and agility.
+# Pterodactyl (API Framework)
+A lightweight, scalable API framework designed for speed and agility. It features built-in capabilities like cost limiting (based on processing time) and standardisation. Unlike traditional routing APIs, all requests are directed to a central index as POST requests, which include essential details such as process ID, HTTP method, payload, and cache. This streamlined approach ensures efficient resource management while maintaining high performance.
