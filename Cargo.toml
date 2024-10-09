@@ -1,6 +1,12 @@
 [package]
 name = "pterodactyl"
 version = "0.1.0"
+authors = ["Tricera Systems <reeceharris@duck.com>"]
+description = "A lightweight, scalable API framework that takes your applications to new heights with speed and agility."
+license = "AGPL-3.0"
+homepage = "https://github.com/TriceraSystems/Pterodactyl"
+repository = "https://github.com/TriceraSystems/Pterodactyl"
+readme = "README.md"
 edition = "2021"
 
 [dependencies]
