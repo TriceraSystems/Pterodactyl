@@ -1,4 +1,4 @@
-# Pterodactyl (API Framework)
+# Pterodactyl (REST API Framework)
 
 ![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/TriceraSystems/Pterodactyl/.github%2Fworkflows%2Frust.yml?branch=main&style=flat-square&label=rust%20test) 
 ![GitHub Issues or Pull Requests](https://img.shields.io/github/issues/TriceraSystems/Pterodactyl?style=flat-square)
