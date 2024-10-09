@@ -10,6 +10,8 @@ A lightweight, scalable API framework designed for speed and agility. It feature
 
 - [Installation](#installation)
 - [Usage](#usage)
+- [Api](#api)
+    - [`Server.start(addr)`](#serverstartaddr)
 
 ## Installation
 
@@ -45,3 +47,11 @@ async fn main() -> Result<(), Box<dyn std::error::Error + Send + Sync>> {
 ```
 
 This basic setup provides an ideal starting point for building scalable and efficient servers with **Pterodactyl**, while still giving you flexibility over most components.
+
+## API
+
+The **Pterodactyl** package has a public class `Server`, this class is the core of the package everything goes through this class.
+
+### `Server.start(addr)` 
+
+
