@@ -1,10 +1,10 @@
-# Pterodactyl (REST API Framework)
+# Pterodactyl (JSON REST API Framework)
 
 ![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/TriceraSystems/Pterodactyl/.github%2Fworkflows%2Frust.yml?branch=main&style=flat-square&label=rust%20test) 
 ![GitHub Issues or Pull Requests](https://img.shields.io/github/issues/TriceraSystems/Pterodactyl?style=flat-square)
 ![GitHub repo size](https://img.shields.io/github/repo-size/TriceraSystems/Pterodactyl?style=flat-square)
 
-A lightweight, scalable API framework designed for speed and agility. It features built-in capabilities like cost limiting (based on processing time) and standardisation. Unlike traditional routing APIs, all requests are directed to a central index as POST requests, which include essential details such as process ID, HTTP method, payload, and cache. This streamlined approach ensures efficient resource management while maintaining high performance.
+A lightweight, scalable JSON REST API framework designed for speed and agility. It features built-in capabilities like cost limiting (based on processing time) and standardisation. Unlike traditional routing APIs, all requests are directed to a central index as POST requests, which include essential details such as process ID, HTTP method, payload, and cache. This streamlined approach ensures efficient resource management while maintaining high performance.
 
 ## Table of Contents
 
