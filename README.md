@@ -13,6 +13,7 @@ A lightweight, scalable API framework designed for speed and agility. It feature
 - [Api](#api)
     - [`Server.start(addr)`](#serverstartaddr)
     - [`Server.add_process(name, func)`](#serveradd_processname-func)
+- [Benchmarking](#benchmarking)
 
 ## Installation
 
@@ -73,5 +74,7 @@ The **Pterodactyl** package has a public class `Server`, this class is the core 
 
 ### `Server.start(addr)` 
 ### `Server.add_process(name, func)` 
+
+## Benchmarking
 
 
