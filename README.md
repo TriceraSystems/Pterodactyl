@@ -33,7 +33,7 @@ pterodactyl = "0.1.0"
 
 **Pterodactyl** is designed to offer full control over key aspects of your API, such as HTTP version (`http/1.1` or `http/2.0`) and resource limiters. However, the request and response schema are fixed to maintain consistency and standardisation across projects.
 
-Here's a simple example to get you started:
+Here's a [simple example](/examples/simple.rs) to get you started:
 
 ```rust
 use pterodactyl::{Server, ProcessResponse};
