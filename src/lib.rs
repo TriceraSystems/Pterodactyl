@@ -15,11 +15,11 @@ use hyper::body::{Bytes, Incoming};
 
 // Define the structure of our JSON response
 #[derive(Serialize, Deserialize)]
-pub struct JsonResponse {
+struct JsonResponse {
     code: u16,                 // HTTP status code
     message: String,           // Small response summary
     data: Value,               // Processed Data (arbitrary JSON)
-    errors: Value,             // Any errors (arbitrary JSON)
+    errors: Vec<String>,             // Any errors (arbitrary JSON)
     timestamp: String,         // Timestamp of process response
     cache: bool,               // Is the response from cache
     cost: f64,                 // Processing cost (adjust type as needed)
@@ -28,7 +28,7 @@ pub struct JsonResponse {
 
 impl JsonResponse {
     // Constructor for JsonResponse
-    pub fn new(code: u16, message: String, data: Value, errors: Value, cache: bool, cost: f64) -> Self {
+    fn new(code: u16, message: String, data: Value, errors: Vec<String>, cache: bool, cost: f64) -> Self {
         // Get current timestamp
         let timestamp = SystemTime::now()
             .duration_since(UNIX_EPOCH)
@@ -68,7 +68,42 @@ impl JsonResponse {
     }
 }
 
-type FuncType = Box<dyn Fn() -> Result<String, String> + Send + Sync>;
+pub struct ProcessResponse {
+    code: u16,
+    message: String,
+    data: Value,
+    errors: Vec<String>,
+}
+
+impl ProcessResponse {
+    // Constructor for ProcessResponse
+    pub fn new(code: u16, message: String, data: Value, errors: Vec<String>) -> Self {
+
+        // Create response object without hash
+        let response = Self {
+            code,
+            message,
+            data,
+            errors,
+        };
+
+        Self { ..response }
+    }
+
+    // Serialize the ProcessResponse to a JsonResponse
+    fn to_json_response(&self) -> JsonResponse {
+        JsonResponse::new(
+            self.code,
+            self.message.clone(),
+            self.data.clone(),
+            self.errors.clone(),
+            false,
+            0.0,
+        )
+    }
+}
+
+type FuncType = Box<dyn Fn() -> Result<ProcessResponse, ProcessResponse> + Send + Sync>;
 
 pub struct Server {
     processes: Arc<RwLock<HashMap<String, FuncType>>>,
@@ -83,7 +118,7 @@ impl Server {
 
     async fn incoming(self: Arc<Self>, _req: Request<Incoming>) -> Result<Response<Full<Bytes>>, Infallible> {
         
-        let process_id = "test";
+        let process_id = "example";
 
         // Get the process function from the processes HashMap
         let processes = self.processes.read().unwrap();
@@ -92,15 +127,11 @@ impl Server {
         // Call the process function
         let result = process();
         
-        // Create a new JsonResponse
-        let response = JsonResponse::new(
-            200,
-            "Success".to_string(),
-            serde_json::json!({}),
-            serde_json::json!([]),
-            false,
-            0.0,
-        );
+        // Match on the result to call to_json_response
+        let response = match result {
+            Ok(success_response) => success_response.to_json_response(),
+            Err(error_response) => error_response.to_json_response(),
+        };
        
         // Serialize the JsonResponse to a string
         let json_response = serde_json::to_string(&response).unwrap();
@@ -116,7 +147,7 @@ impl Server {
 
     pub fn add_process<F>(&self, name: &str, func: F)
     where
-        F: Fn() -> Result<String, String> + Send + Sync + 'static,
+        F: Fn() -> Result<ProcessResponse, ProcessResponse> + Send + Sync + 'static,
     {
         let mut processes = self.processes.write().unwrap();
         processes.insert(name.to_string(), Box::new(func));
